@@ -25,6 +25,7 @@ API
 """
 import os
 import shutil
+import sys
 import tempfile
 from textwrap import dedent
 
@@ -32,6 +33,12 @@ from os.path import dirname, isdir, realpath
 
 
 __version__ = '0.0.0-dev'
+
+
+if sys.version_info >= (3, 0, 0):
+    is_stringy = lambda s: isinstance(s, str)
+else:
+    is_stringy = lambda s: isinstance(s, basestring)
 
 
 class FilesystemTree(object):
@@ -109,7 +116,7 @@ class FilesystemTree(object):
         convert_path = lambda path: self._sep.join(path.split('/'))
 
         for item in treedef:
-            if isinstance(item, basestring):
+            if is_stringy(item):
                 path = convert_path(item.lstrip('/'))
                 path = self._sep.join([self.root, path])
                 os.makedirs(path)
