@@ -1,6 +1,6 @@
-filesystem_fixture.py
-=====================
+filesystem_tree.py
+==================
 
-.. automodule:: filesystem_fixture
+.. automodule:: filesystem_tree
     :members:
     :member-order: bysource
