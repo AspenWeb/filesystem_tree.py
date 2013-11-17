@@ -30,6 +30,11 @@ def test_mk_makes_a_dir(fs):
     fs.mk('some/dir')
     assert isdir(fs.resolve('some/dir'))
 
+def test_mk_makes_a_file(fs):
+    fs.mk(('some/dir/file.txt', 'Greetings, program!'))
+    contents = open(fs.resolve('some/dir/file.txt')).read()
+    assert contents == 'Greetings, program!'
+
 def test_remove_removes(fs):
     assert isdir(fs.root)
     fs.remove()
