@@ -161,6 +161,9 @@ class FilesystemTree(object):
 
     def remove(self):
         """Remove the filesystem tree at :py:attr:`root`.
+
+        :returns: ``None``
+
         """
         if isdir(self.root):
             shutil.rmtree(self.root)
