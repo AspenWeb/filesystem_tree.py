@@ -3,13 +3,13 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 from setuptools import setup
 
 
-setup( name='filesystem_fixture'
+setup( name='filesystem_tree'
      , author='Gittip, LLC'
      , author_email='support@gittip.com'
-     , description="Filesystem fixture for Python tests"
-     , url='https://filesystem-fixture-py.readthedocs.org/'
+     , description="This library provides a class for managing a filesystem tree."
+     , url='https://filesystem-tree-py.readthedocs.org/'
      , version='0.0.0-dev'
-     , py_modules=['filesystem_fixture']
+     , py_modules=['filesystem_tree']
      , classifiers=[ 'Development Status :: 5 - Production/Stable'
                    , 'Intended Audience :: Developers'
                    , 'License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication'

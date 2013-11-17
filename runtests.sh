@@ -1,3 +1,3 @@
 #!/bin/sh
-python filesystem_fixture.py -v
+python filesystem_fixture.py
 py.test -v tests.py 

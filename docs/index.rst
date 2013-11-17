@@ -1,6 +1,6 @@
-lifecycle.py
-============
+filesystem_fixture.py
+=====================
 
-.. automodule:: lifecycle
+.. automodule:: filesystem_fixture
     :members:
     :member-order: bysource

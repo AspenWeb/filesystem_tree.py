@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# filesystem_fixture.py documentation build configuration file, created by
+# filesystem_tree.py documentation build configuration file, created by
 # sphinx-quickstart on Tue Aug  6 21:07:46 2013.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -40,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'filesystem_fixture.py'
+project = u'filesystem_tree.py'
 copyright = u'public domain'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -164,7 +164,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'filesystem_fixturepydoc'
+htmlhelp_basename = 'filesystem_treepydoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -183,7 +183,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'filesystem_fixturepy.tex', u'filesystem_fixture.py Documentation',
+  ('index', 'filesystem_treepy.tex', u'filesystem_tree.py Documentation',
    u'Gittip, LLC', 'manual'),
 ]
 
@@ -213,7 +213,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'filesystem_fixturepy', u'filesystem_fixture.py Documentation',
+    ('index', 'filesystem_treepy', u'filesystem_tree.py Documentation',
      [u'Gittip, LLC'], 1)
 ]
 
@@ -227,8 +227,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'filesystem_fixturepy', u'filesystem_fixture.py Documentation',
-   u'Gittip, LLC', 'filesystem_fixturepy', 'One line description of project.',
+  ('index', 'filesystem_treepy', u'filesystem_tree.py Documentation',
+   u'Gittip, LLC', 'filesystem_treepy', 'One line description of project.',
    'Miscellaneous'),
 ]
 
