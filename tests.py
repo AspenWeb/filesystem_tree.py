@@ -1,3 +1,4 @@
+import os
 from os.path import isdir
 
 import pytest
@@ -20,6 +21,14 @@ def test_args_go_to_mk_not_root():
 
 def test_it_makes_a_directory(fs):
     assert isdir(fs.root)
+
+def test_resolve_resolves(fs):
+    path = fs.resolve('some/dir')
+    assert path == os.path.realpath(os.sep.join([fs.root, 'some', 'dir']))
+
+def test_mk_makes_a_dir(fs):
+    fs.mk('some/dir')
+    assert isdir(fs.resolve('some/dir'))
 
 def test_remove_removes(fs):
     assert isdir(fs.root)
