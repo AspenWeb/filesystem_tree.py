@@ -33,7 +33,7 @@ from textwrap import dedent
 from os.path import dirname, isdir, realpath
 
 
-__version__ = '1.0.0rc1-dev'
+__version__ = '1.0.0rc2'
 
 
 if sys.version_info >= (3, 0, 0):
