@@ -29,7 +29,7 @@ import tempfile
 from textwrap import dedent
 
 
-class FileTree(object):
+class FilesystemTree(object):
     """Represent a filesystem tree.
 
     :param treedef: Any positional arguments are passed through to :py:func:`mk`.
@@ -45,7 +45,7 @@ class FileTree(object):
     Create a new instance of this class every time you need an isolated
     filesystem tree:
 
-    >>> fs = Filetree()
+    >>> fs = FilesystemTree()
 
     This creates a temporary directory, which you can access with ``fs.root``:
 
@@ -74,7 +74,7 @@ class FileTree(object):
 
 
     def mk(self, *treedef, **kw):
-        """Builds a filesystem tree in :py:attr:`~Filetree.root` based on ``treedef``.
+        """Builds a filesystem tree in :py:attr:`~FilesystemTree.root` based on ``treedef``.
 
         :param treedef:             The definition of a filesystem tree.
 
