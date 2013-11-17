@@ -20,8 +20,8 @@ Python 2.6, 2.7, 3.2, and 3.3.
 .. _public domain: http://creativecommons.org/publicdomain/zero/1.0/
 
 
-API
----
+API Reference
+-------------
 
 """
 import os
