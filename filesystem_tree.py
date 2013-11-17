@@ -28,6 +28,8 @@ import shutil
 import tempfile
 from textwrap import dedent
 
+from os.path import dirname, isdir, realpath
+
 
 class FilesystemTree(object):
     """Represent a filesystem tree.
@@ -50,7 +52,7 @@ class FilesystemTree(object):
     This creates a temporary directory, the path to which you can access with
     ``fs.root``:
 
-    >>> os.path.isdir(fs.root)
+    >>> isdir(fs.root)
     True
 
     """
@@ -68,7 +70,7 @@ class FilesystemTree(object):
         root = kw.get('root', None)
         should_dedent = kw.get('should_dedent', True)
 
-        self.root = root if root is not None else tempfile.mkdtemp(prefix=self.prefix)
+        self.root = root if root is not None else realpath(tempfile.mkdtemp(prefix=self.prefix))
         self.should_dedent = should_dedent
         if treedef is not None:
             self.mk(*treedef)
@@ -93,11 +95,11 @@ class FilesystemTree(object):
         This method iterates over the items in ``treedef``, creating
         directories for any strings, and files for any tuples. For file tuples,
         the first item is the path of the file, the second is the contents to
-        write, and the third (optional) item is whether to dedent the file
-        contents first before writing it. All paths must be specified using
-        ``/`` as the separator (they will be automatically converted to the
-        native path separator for the current platform). Any intermediate
-        directories will be created as necessary.
+        write, and the third (optional) item is whether to dedent the contents
+        first before writing it. All paths must be specified using ``/`` as the
+        separator (they will be automatically converted to the native path
+        separator for the current platform). Any intermediate directories will
+        be created as necessary.
 
         """
         should_dedent = kw.get('should_dedent', self.should_dedent)
@@ -120,7 +122,7 @@ class FilesystemTree(object):
 
                 path = convert_path(filepath.lstrip('/'))
                 path = self._sep.join([self.root, path])
-                parent = os.path.dirname(path)
+                parent = dirname(path)
                 os.makedirs(parent)
 
                 if should_dedent:
@@ -141,13 +143,13 @@ class FilesystemTree(object):
 
         """
         path = self._sep.join([self.root] + path.split('/'))
-        return os.path.realpath(path)
+        return realpath(path)
 
 
     def remove(self):
         """Remove the filesystem tree at :py:attr:`root`.
         """
-        if os.path.isdir(self.root):
+        if isdir(self.root):
             shutil.rmtree(self.root)
 
 

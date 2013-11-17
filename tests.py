@@ -34,3 +34,6 @@ def test_remove_removes(fs):
     assert isdir(fs.root)
     fs.remove()
     assert not isdir(fs.root)
+
+def test_resolve_with_no_arg_is_equivalent_to_root(fs):
+    assert fs.resolve() == fs.root
