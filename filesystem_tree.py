@@ -111,6 +111,45 @@ class FilesystemTree(object):
         separator for the current platform). Any intermediate directories will
         be created as necessary.
 
+        So for example if you instantiate a :py:class:`FilesystemTree`:
+
+        >>> fs = FilesystemTree()
+
+        And you call :py:func:`mk` with:
+
+        >>> fs.mk(('path/to/file.txt', 'Greetings, program!'))
+
+        Then you'll have one file in your tree:
+
+        >>> os.listdir(os.path.join(fs.root, 'path', 'to'))
+        ['file.txt']
+
+        And it will have the content you asked for:
+
+        >>> open(fs.resolve('path/to/file.txt')).read()
+        'Greetings, program!'
+
+        The automatic dedenting is so you can use multiline strings in indented
+        code blocks to specify file content and indent it with the rest of your
+        code, but not have the indents actually written to the file. For example:
+
+        >>> def foo():
+        ...     fs.mk(('other/file.txt', '''
+        ...     Here is a list of things:
+        ...         - Thing one.
+        ...         - Thing two.
+        ...         - Thing three.
+        ...     '''))
+        ...
+        >>> foo()
+        >>> print(open(fs.resolve('other/file.txt')).read())
+        <BLANKLINE>
+        Here is a list of things:
+            - Thing one.
+            - Thing two.
+            - Thing three.
+        <BLANKLINE>
+
         """
         should_dedent = kw.get('should_dedent', self.should_dedent)
         convert_path = lambda path: self._sep.join(path.split('/'))
