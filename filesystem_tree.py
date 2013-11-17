@@ -31,6 +31,9 @@ from textwrap import dedent
 from os.path import dirname, isdir, realpath
 
 
+__version__ = '0.0.0-dev'
+
+
 class FilesystemTree(object):
     """Represent a filesystem tree.
 
