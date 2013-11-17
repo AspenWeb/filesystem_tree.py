@@ -57,7 +57,7 @@ class FilesystemTree(object):
 
     prefix = 'filesystem-tree-' #: The prefix to use when making a temporary directory as root.
     root = None                 #: The root of the filesystem tree that this object represents.
-    should_dedent = True        #: Whether or not to automatically dedent file contents.
+    should_dedent = True        #: Whether or not to automatically dedent file contents on write.
 
     _sep = os.sep
 
