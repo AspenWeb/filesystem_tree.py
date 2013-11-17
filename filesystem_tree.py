@@ -159,7 +159,8 @@ class FilesystemTree(object):
             if is_stringy(item):
                 path = convert_path(item.lstrip('/'))
                 path = self._sep.join([self.root, path])
-                os.makedirs(path)
+                if not isdir(path):
+                    os.makedirs(path)
             elif isinstance(item, tuple):
 
                 if len(item) == 2:
@@ -173,7 +174,8 @@ class FilesystemTree(object):
                 path = convert_path(filepath.lstrip('/'))
                 path = self._sep.join([self.root, path])
                 parent = dirname(path)
-                os.makedirs(parent)
+                if not isdir(parent):
+                    os.makedirs(parent)
 
                 if should_dedent:
                     contents = dedent(contents)

@@ -30,8 +30,17 @@ def test_mk_makes_a_dir(fs):
     fs.mk('some/dir')
     assert isdir(fs.resolve('some/dir'))
 
+def test_mk_makes_a_dir_is_like_dash_p(fs):
+    fs.mk('some/dir', 'some/dir')
+    assert isdir(fs.resolve('some/dir'))
+
 def test_mk_makes_a_file(fs):
     fs.mk(('some/dir/file.txt', 'Greetings, program!'))
+    contents = open(fs.resolve('some/dir/file.txt')).read()
+    assert contents == 'Greetings, program!'
+
+def test_mk_doesnt_choke_on_existing_dir(fs):
+    fs.mk('some/dir', ('some/dir/file.txt', 'Greetings, program!'))
     contents = open(fs.resolve('some/dir/file.txt')).read()
     assert contents == 'Greetings, program!'
 
