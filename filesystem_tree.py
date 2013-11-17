@@ -138,7 +138,7 @@ class FilesystemTree(object):
                 if should_dedent:
                     contents = dedent(contents)
 
-                file(path, 'w+').write(contents)
+                open(path, 'w+').write(contents)
 
             else:
                 raise TypeError
