@@ -1,5 +1,5 @@
-"""This library provides a class for managing a filesystem tree. The driving
-use-case is testing.
+"""This library provides a class for managing a filesystem tree. Test fixture
+is the driving use-case.
 
 
 Installation
