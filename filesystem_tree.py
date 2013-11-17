@@ -129,8 +129,8 @@ class FilesystemTree(object):
         >>> open(fs.resolve('path/to/file.txt')).read()
         'Greetings, program!'
 
-        The automatic dedenting is so you can use multiline strings in indented
-        code blocks to specify file content and indent it with the rest of your
+        The automatic dedenting is so you can use multi-line strings in indented
+        code blocks to specify file contents and indent it with the rest of your
         code, but not have the indents actually written to the file. For example:
 
         >>> def foo():
