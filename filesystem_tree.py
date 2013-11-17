@@ -35,8 +35,8 @@ class FilesystemTree(object):
     :param treedef: Any positional arguments are passed through to :py:func:`mk`.
 
     :param string root: The root of the filesystem tree. If not specified or
-        ``None``, a temporary directory will be created. (May only be supplied as a
-        keyword argument.)
+        ``None``, a temporary directory will be created and used. (May only be
+        supplied as a keyword argument.)
 
     :param bool should_dedent: Sets the instance default for whether or not the
         contents of files are dedented before being written. (May only be supplied
