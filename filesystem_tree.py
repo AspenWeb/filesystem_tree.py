@@ -1,4 +1,5 @@
-"""This library provides a class for managing a filesystem tree.
+"""This library provides a class for managing a filesystem tree. The driving
+use-case is testing.
 
 
 Installation
