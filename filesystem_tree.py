@@ -137,7 +137,7 @@ class FilesystemTree(object):
 
         :param path: A path relative to :py:attr:`root` using ``/`` as the separator
 
-        :returns: An absolute path using the native path separator, with symlinks resolved
+        :returns: An absolute path using the native path separator, with symlinks removed
 
         """
         path = self._sep.join([self.root] + path.split('/'))
