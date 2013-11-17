@@ -42,3 +42,82 @@ def test_remove_removes(fs):
 
 def test_resolve_with_no_arg_is_equivalent_to_root(fs):
     assert fs.resolve() == fs.root
+
+
+# should_dedent - sd
+
+def test_sd_defaults_to_true(fs):
+    fs.mk(('some/dir/file.txt', '    Greetings, program!'))
+    contents = open(fs.resolve('some/dir/file.txt')).read()
+    assert contents == 'Greetings, program!'
+
+def test_sd_false_via_tuple(fs):
+    fs.mk(('some/dir/file.txt', '    Greetings, program!', 0), should_dedent=1)
+    contents = open(fs.resolve('some/dir/file.txt')).read()
+    assert contents == '    Greetings, program!'
+
+def test_sd_true_via_tuple(fs):
+    fs.mk(('some/dir/file.txt', '    Greetings, program!', 1), should_dedent=0)
+    contents = open(fs.resolve('some/dir/file.txt')).read()
+    assert contents == 'Greetings, program!'
+
+def test_sd_false_via_mk(fs):
+    fs.mk(('some/dir/file.txt', '    Greetings, program!'), should_dedent=False)
+    contents = open(fs.resolve('some/dir/file.txt')).read()
+    assert contents == '    Greetings, program!'
+
+def test_sd_true_via_mk(fs):
+    fs.mk(('some/dir/file.txt', '    Greetings, program!'), should_dedent=1)
+    contents = open(fs.resolve('some/dir/file.txt')).read()
+    assert contents == 'Greetings, program!'
+
+def test_sd_false_via_constructor():
+    try:
+        fs = FilesystemTree(should_dedent=False)
+        fs.mk(('some/dir/file.txt', '    Greetings, program!'))
+        contents = open(fs.resolve('some/dir/file.txt')).read()
+        assert contents == '    Greetings, program!'
+    finally:
+        fs.remove()
+
+def test_sd_true_via_constructor():
+    try:
+        FilesystemTree.should_dedent = False
+        fs = FilesystemTree(should_dedent=True)
+        fs.mk(('some/dir/file.txt', '    Greetings, program!'))
+        contents = open(fs.resolve('some/dir/file.txt')).read()
+        assert contents == 'Greetings, program!'
+    finally:
+        FilesystemTree.should_dedent = True
+        fs.remove()
+
+def test_sd_false_via_instance_attribute():
+    try:
+        fs = FilesystemTree()
+        fs.should_dedent = False
+        fs.mk(('some/dir/file.txt', '    Greetings, program!'))
+        contents = open(fs.resolve('some/dir/file.txt')).read()
+        assert contents == '    Greetings, program!'
+    finally:
+        fs.remove()
+
+def test_sd_true_via_instance_attribute():
+    try:
+        fs = FilesystemTree(should_dedent=False)
+        fs.should_dedent = True
+        fs.mk(('some/dir/file.txt', '    Greetings, program!'))
+        contents = open(fs.resolve('some/dir/file.txt')).read()
+        assert contents == 'Greetings, program!'
+    finally:
+        fs.remove()
+
+def test_sd_false_via_class_attribute():
+    try:
+        FilesystemTree.should_dedent = False
+        fs = FilesystemTree()
+        fs.mk(('some/dir/file.txt', '    Greetings, program!'))
+        contents = open(fs.resolve('some/dir/file.txt')).read()
+        assert contents == 'Greetings, program!'
+    finally:
+        FilesystemTree.should_dedent = True
+        fs.remove()
