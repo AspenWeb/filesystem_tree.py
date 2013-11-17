@@ -47,17 +47,18 @@ class FilesystemTree(object):
 
     >>> fs = FilesystemTree()
 
-    This creates a temporary directory, which you can access with ``fs.root``:
+    This creates a temporary directory, the path to which you can access with
+    ``fs.root``:
 
     >>> os.path.isdir(fs.root)
     True
 
-
     """
 
+    prefix = 'filesystem-tree-' #: The prefix to use when making a temporary directory as root.
     root = None                 #: The root of the filesystem tree that this object represents.
     should_dedent = True        #: Whether or not to automatically dedent file contents.
-    prefix = 'filesystem-tree-' #: The prefix to use when making a temporary directory as root.
+
     _sep = os.sep
 
 
