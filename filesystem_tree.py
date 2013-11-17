@@ -141,6 +141,9 @@ class FilesystemTree(object):
 
         :returns: An absolute path using the native path separator, with symlinks removed
 
+        The return value of :py:func:`resolve` with no arguments is equivalent
+        to :py:attr:`root`.
+
         """
         path = self._sep.join([self.root] + path.split('/'))
         return realpath(path)
