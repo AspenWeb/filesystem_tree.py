@@ -12,12 +12,11 @@ Installation
 We `test <https://travis-ci.org/gittip/filesystem_tree.py>`_ against
 Python 2.6, 2.7, 3.2, and 3.3.
 
-:py:mod:`filesystem_tree` is in the `public domain`_.
+:py:mod:`filesystem_tree` is MIT-licensed.
 
 
 .. _GitHub: https://github.com/gittip/filesystem_tree.py
 .. _PyPI: https://pypi.python.org/pypi/filesystem_tree
-.. _public domain: http://creativecommons.org/publicdomain/zero/1.0/
 
 
 API Reference
