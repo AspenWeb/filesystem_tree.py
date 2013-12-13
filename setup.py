@@ -8,7 +8,7 @@ setup( name='filesystem_tree'
      , author_email='support@gittip.com'
      , description="This library provides a class for managing a filesystem tree."
      , url='https://filesystem-tree-py.readthedocs.org/'
-     , version='1.0.0rc2-dev'
+     , version='1.0.0'
      , py_modules=['filesystem_tree']
      , classifiers=[ 'Development Status :: 5 - Production/Stable'
                    , 'Intended Audience :: Developers'
