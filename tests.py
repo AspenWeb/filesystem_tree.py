@@ -41,6 +41,11 @@ def test_mk_makes_a_file(fs):
     contents = open(fs.resolve('some/dir/file.txt')).read()
     assert contents == 'Greetings, program!'
 
+def test_mk_makes_a_file_with_unicode_content(fs):
+    fs.mk(('some/dir/file.txt', '\u2603'))
+    contents = open(fs.resolve('some/dir/file.txt')).read()
+    assert contents == 'Greetings, program!'
+
 def test_mk_doesnt_choke_on_existing_dir(fs):
     fs.mk('some/dir', ('some/dir/file.txt', 'Greetings, program!'))
     contents = open(fs.resolve('some/dir/file.txt')).read()
