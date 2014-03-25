@@ -32,6 +32,10 @@ def test_mk_makes_a_dir(fs):
     fs.mk('some/dir')
     assert isdir(fs.resolve('some/dir'))
 
+def test_mk_makes_a_dir_with_a_unicode_path(fs):
+    fs.mk('some/\u2603')
+    assert isdir(fs.resolve('some/\u2603'))
+
 def test_mk_makes_a_dir_is_like_dash_p(fs):
     fs.mk('some/dir', 'some/dir')
     assert isdir(fs.resolve('some/dir'))
