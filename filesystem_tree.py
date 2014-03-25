@@ -39,8 +39,10 @@ __version__ = '1.0.0-dev'
 
 if sys.version_info >= (3, 0, 0):
     is_stringy = lambda s: isinstance(s, str)
+    is_bytestring = lambda s: isinstance(s, bytes)
 else:
     is_stringy = lambda s: isinstance(s, basestring)
+    is_bytestring = lambda s: isinstance(s, str)
 
 
 class FilesystemTree(object):
@@ -55,6 +57,9 @@ class FilesystemTree(object):
     :param bool should_dedent: Sets the instance default for whether or not the
         contents of files are dedented before being written. (May only be supplied
         as a keyword argument.)
+
+    :param str encoding: Sets the instance default for what encoding to use when
+        writing to disk. (May only be supplied as a keyword argument.)
 
     Create a new instance of this class every time you need an isolated
     filesystem tree:
@@ -72,6 +77,7 @@ class FilesystemTree(object):
     prefix = 'filesystem-tree-' #: The prefix to use when making a temporary directory as root.
     root = None                 #: The root of the filesystem tree that this object represents.
     should_dedent = True        #: Whether or not to automatically dedent file contents on write.
+    encoding = 'UTF-8'          #: How to encode file contents on write, when necessary.
 
     _sep = os.sep
 
@@ -79,11 +85,14 @@ class FilesystemTree(object):
     def __init__(self, *treedef, **kw):
 
         # Pull args out of kw.
-        root = kw.get('root', None)
-        should_dedent = kw.get('should_dedent', True)
+        root = kw.get('root', self.root)
+        should_dedent = kw.get('should_dedent', self.should_dedent)
+        encoding = kw.get('encoding', self.encoding)
 
         self.root = root if root is not None else realpath(tempfile.mkdtemp(prefix=self.prefix))
         self.should_dedent = should_dedent
+        self.encoding = encoding
+
         if treedef is not None:
             self.mk(*treedef)
 
@@ -98,6 +107,12 @@ class FilesystemTree(object):
             :py:attr:`should_dedent` is used. (May only be supplied as a
             keyword argument.)
 
+        :param str encoding:        The encoding with which to convert file
+            contents to a bytestring if you specify said contents as a ``str``
+            (Python 3) or ``unicode`` (Python 2). If not specified,
+            :py:attr:`encoding` is used. (May only be supplied as a keyword
+            argument.)
+
         :raises:                    :py:exc:`TypeError`, if treedef contains
             anything besides strings and tuples; :py:exc:`ValueError`, if
             treedef contains a tuple that doesn't have two or three items
@@ -107,11 +122,12 @@ class FilesystemTree(object):
         This method iterates over the items in ``treedef``, creating
         directories for any strings, and files for any tuples. For file tuples,
         the first item is the path of the file, the second is the contents to
-        write, and the third (optional) item is whether to dedent the contents
-        first before writing it. All paths must be specified using ``/`` as the
-        separator (they will be automatically converted to the native path
-        separator for the current platform). Any intermediate directories will
-        be created as necessary.
+        write, the third (optional) item is whether to dedent the contents
+        first before writing it, and the fourth (optional) item is the encoding
+        to use when writing the file. All paths must be specified using ``/``
+        as the separator (they will be automatically converted to the native
+        path separator for the current platform). Any intermediate directories
+        will be created as necessary.
 
         So for example if you instantiate a :py:class:`FilesystemTree`:
 
@@ -154,6 +170,7 @@ class FilesystemTree(object):
 
         """
         should_dedent = kw.get('should_dedent', self.should_dedent)
+        encoding = kw.get('encoding', self.encoding)
         convert_path = lambda path: self._sep.join(path.split('/'))
 
         for item in treedef:
@@ -167,8 +184,12 @@ class FilesystemTree(object):
                 if len(item) == 2:
                     filepath, contents = item
                     should_dedent = should_dedent
+                    encoding = encoding
                 elif len(item) == 3:
                     filepath, contents, should_dedent = item
+                    encoding = encoding
+                elif len(item) == 4:
+                    filepath, contents, should_dedent, encoding = item
                 else:
                     raise ValueError
 
@@ -181,7 +202,10 @@ class FilesystemTree(object):
                 if should_dedent:
                     contents = dedent(contents)
 
-                open(path, 'w+').write(contents)
+                if not is_bytestring(contents):
+                    contents = contents.encode(encoding)
+
+                open(path, 'wb+').write(contents)
 
             else:
                 raise TypeError
