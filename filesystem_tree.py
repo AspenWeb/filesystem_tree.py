@@ -238,4 +238,6 @@ class FilesystemTree(object):
 
 if __name__ == '__main__':
     import doctest
-    doctest.testmod()
+    failures, tests = doctest.testmod()
+    sys.exit(failures)
+
