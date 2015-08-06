@@ -236,3 +236,30 @@ def test_encoding_cp1140_via_class_attribute():
     finally:
         FilesystemTree.encoding = _reset
         fs.remove()
+
+# test use as a context manager
+
+def test_context_manager_removes_on_clean_context_exit():
+    ftname = None
+    with FilesystemTree() as ft:
+        ft.mk(('file.txt', 'some text'))
+        ftname = ft.resolve('file.txt')
+        assert os.path.exists(ftname)
+    assert not os.path.exists(ftname)
+
+def test_context_manager_doesnt_remove_on_exception_context_exit():
+    excepted = False
+    try:
+        with FilesystemTree() as ft:
+            ft.mk(('file.txt', 'some text'))
+            ftname = ft.resolve('file.txt')
+            assert os.path.exists(ftname)
+            raise ValueError
+    except ValueError:
+        excepted = True
+    assert excepted
+    assert os.path.exists(ftname)
+
+
+
+

@@ -97,6 +97,17 @@ class FilesystemTree(object):
             self.mk(*treedef)
 
 
+    def __enter__(self):
+        """support using a FilesystemTree as a context manager"""
+        return self
+
+
+    def __exit__(self, exc_type, exc_value, tb):
+        """When exiting a context, only do cleanup if it was a clean exit"""
+        if exc_type == None and exc_value == None and tb == None:
+            self.remove()
+
+
     def mk(self, *treedef, **kw):
         """Builds a filesystem tree in :py:attr:`~FilesystemTree.root` based on ``treedef``.
 
@@ -205,7 +216,8 @@ class FilesystemTree(object):
                 if not is_bytestring(contents):
                     contents = contents.encode(encoding)
 
-                open(path, 'wb+').write(contents)
+                with open(path, 'wb+') as f:
+                    f.write(contents)
 
             else:
                 raise TypeError
