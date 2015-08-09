@@ -4,3 +4,6 @@ dist
 distribute-*
 docs/_build
 *.egg-info
+*.pyc
+.ropeproject
+/build
