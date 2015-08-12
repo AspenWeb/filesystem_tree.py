@@ -11,7 +11,7 @@ Installation, Testing, and License
 
 We test against 64-bit Python 2.6, 2.7, 3.2, and 3.3 on Linux: |travis|
 
-And we test against 32- and 64-bit Python 2.7 on Windows: |appveyor|
+And we test against 32- and 64-bit Python 2.7, 3.3, and 3.4 on Windows: |appveyor|
 
 ``filesystem_tree`` is MIT-licensed.
 
