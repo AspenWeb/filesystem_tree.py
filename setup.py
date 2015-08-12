@@ -4,9 +4,9 @@ from setuptools import setup
 
 
 setup( name='filesystem_tree'
-     , author='Gittip, LLC'
-     , author_email='support@gittip.com'
-     , description="This library provides a class for managing a filesystem tree."
+     , author='Gratipay, LLC'
+     , author_email='support@gratipay.com'
+     , description="a library for managing a filesystem tree"
      , url='https://filesystem-tree-py.readthedocs.org/'
      , version='1.1.0-dev'
      , py_modules=['filesystem_tree']
@@ -20,6 +20,7 @@ setup( name='filesystem_tree'
                    , 'Programming Language :: Python :: 3'
                    , 'Programming Language :: Python :: 3.2'
                    , 'Programming Language :: Python :: 3.3'
+                   , 'Programming Language :: Python :: 3.4'
                    , 'Topic :: Software Development :: Libraries :: Python Modules'
                    , 'Topic :: Software Development :: Testing'
                     ]
