@@ -1,27 +1,6 @@
-"""This library provides a class for managing a filesystem tree. Test fixture
-is the driving use-case.
-
-
-Installation
-------------
-
-:py:mod:`filesystem_tree` is available on `GitHub`_ and on `PyPI`_::
-
-    $ pip install filesystem_tree
-
-We `test <https://travis-ci.org/gittip/filesystem_tree.py>`_ against
-Python 2.6, 2.7, 3.2, and 3.3.
-
-:py:mod:`filesystem_tree` is MIT-licensed.
-
-
-.. _GitHub: https://github.com/gittip/filesystem_tree.py
-.. _PyPI: https://pypi.python.org/pypi/filesystem_tree
-
-
+"""
 API Reference
 -------------
-
 """
 from __future__ import absolute_import, division, print_function, unicode_literals
 
