@@ -5,7 +5,7 @@ is the driving use-case.
 Installation, Testing, and License
 ----------------------------------
 
-:py:mod:`filesystem_tree` is available on `GitHub`_ and on `PyPI`_::
+``filesystem_tree`` is available on `GitHub`_ and on `PyPI`_::
 
     $ pip install filesystem_tree
 
@@ -13,7 +13,7 @@ We test against 64-bit Python 2.6, 2.7, 3.2, and 3.3 on Linux: |travis|
 
 And we test against 32- and 64-bit Python 2.7 on Windows: |appveyor|
 
-:py:mod:`filesystem_tree` is MIT-licensed.
+``filesystem_tree`` is MIT-licensed.
 
 
 .. _GitHub: https://github.com/gittip/filesystem_tree.py
