@@ -150,8 +150,9 @@ class FilesystemTree(object):
 
         Then you'll have one file in your tree:
 
-        >>> os.listdir(os.path.join(fs.root, 'path', 'to'))
-        ['file.txt']
+        >>> files = os.listdir(os.path.join(fs.root, 'path', 'to'))
+        >>> print(' '.join(files))
+        file.txt
 
         And it will have the content you asked for:
 
@@ -250,4 +251,6 @@ class FilesystemTree(object):
 
 if __name__ == '__main__':
     import doctest
-    doctest.testmod()
+    failures, tests = doctest.testmod()
+    sys.exit(failures)
+
