@@ -69,12 +69,12 @@ class FilesystemTree(object):
     Create a new instance of this class every time you need an isolated
     filesystem tree:
 
-    >>> fs = FilesystemTree()
+    >>> ft = FilesystemTree()
 
     This creates a temporary directory, the path to which you can access with
-    ``fs.root``:
+    ``ft.root``:
 
-    >>> isdir(fs.root)
+    >>> isdir(ft.root)
     True
 
     """
@@ -147,21 +147,21 @@ class FilesystemTree(object):
 
         So for example if you instantiate a :py:class:`FilesystemTree`:
 
-        >>> fs = FilesystemTree()
+        >>> ft = FilesystemTree()
 
         And you call :py:func:`mk` with:
 
-        >>> fs.mk(('path/to/file.txt', 'Greetings, program!'))
+        >>> ft.mk(('path/to/file.txt', 'Greetings, program!'))
 
         Then you'll have one file in your tree:
 
-        >>> files = os.listdir(os.path.join(fs.root, 'path', 'to'))
+        >>> files = os.listdir(os.path.join(ft.root, 'path', 'to'))
         >>> print(' '.join(files))
         file.txt
 
         And it will have the content you asked for:
 
-        >>> open(fs.resolve('path/to/file.txt')).read()
+        >>> open(ft.resolve('path/to/file.txt')).read()
         'Greetings, program!'
 
         The automatic dedenting is so you can use multi-line strings in indented
@@ -169,7 +169,7 @@ class FilesystemTree(object):
         code, but not have the indents actually written to the file. For example:
 
         >>> def foo():
-        ...     fs.mk(('other/file.txt', '''
+        ...     ft.mk(('other/file.txt', '''
         ...     Here is a list of things:
         ...         - Thing one.
         ...         - Thing two.
@@ -177,7 +177,7 @@ class FilesystemTree(object):
         ...     '''))
         ...
         >>> foo()
-        >>> print(open(fs.resolve('other/file.txt')).read())
+        >>> print(open(ft.resolve('other/file.txt')).read())
         <BLANKLINE>
         Here is a list of things:
             - Thing one.
