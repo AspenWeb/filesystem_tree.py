@@ -24,6 +24,11 @@ When you're done, clean up with :py:func:`~filesystem_tree.FilesystemTree.remove
 
 >>> ft.remove()
 
+Or use it as a context manager to clean up automatically:
+
+>>> with FilesystemTree() as ft:
+...     ft.mk('my/stuff')
+
 
 API Reference
 =============
@@ -77,6 +82,16 @@ class FilesystemTree(object):
     >>> isdir(ft.root)
     True
 
+    You can use it as a context manager to automatically :py:func:`remove` the
+    tree once you're done with it:
+
+    >>> with FilesystemTree() as ft:
+    ...     pass
+
+    However, the tree is only removed if the code block doesn't raise an
+    exception. If there's an exception the tree will be left on the filesystem
+    so you can debug.
+
     """
 
     prefix = 'filesystem-tree-' #: The prefix to use when making a temporary directory as root.
@@ -103,12 +118,14 @@ class FilesystemTree(object):
 
 
     def __enter__(self):
-        """support using a FilesystemTree as a context manager"""
+        """Support using a FilesystemTree as a context manager.
+        """
         return self
 
 
     def __exit__(self, exc_type, exc_value, tb):
-        """When exiting a context, only do cleanup if it was a clean exit"""
+        """When exiting a context, only do cleanup if it was a clean exit.
+        """
         if exc_type == None and exc_value == None and tb == None:
             self.remove()
 
