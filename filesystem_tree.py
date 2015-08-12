@@ -1,6 +1,37 @@
 """
+Tutorial
+========
+
+Instantiate the :py:class:`~filesystem_tree.FilesystemTree` class:
+
+>>> from filesystem_tree import FilesystemTree
+>>> ft = FilesystemTree()
+
+Now make files!
+
+>>> ft.mk(('greetings/program.txt', 'Greetings, program!'))
+
+You can get the full absolute path of the file you created with
+:py:func:`~filesystem_tree.FilesystemTree.resolve`:
+
+>>> filepath = ft.resolve('greetings/program.txt')
+
+Make directories like so:
+
+>>> ft.mk('my/directory/')
+
+When you're done, clean up with :py:func:`~filesystem_tree.FilesystemTree.remove`:
+
+>>> ft.remove()
+
+Or use it as a context manager to clean up automatically:
+
+>>> with FilesystemTree() as ft:
+...     ft.mk('my/stuff')
+
+
 API Reference
--------------
+=============
 """
 from __future__ import absolute_import, division, print_function, unicode_literals
 
@@ -43,13 +74,23 @@ class FilesystemTree(object):
     Create a new instance of this class every time you need an isolated
     filesystem tree:
 
-    >>> fs = FilesystemTree()
+    >>> ft = FilesystemTree()
 
     This creates a temporary directory, the path to which you can access with
-    ``fs.root``:
+    ``ft.root``:
 
-    >>> isdir(fs.root)
+    >>> isdir(ft.root)
     True
+
+    You can use it as a context manager to automatically :py:func:`remove` the
+    tree once you're done with it:
+
+    >>> with FilesystemTree() as ft:
+    ...     pass
+
+    However, the tree is only removed if the code block doesn't raise an
+    exception. If there's an exception the tree will be left on the filesystem
+    so you can debug.
 
     """
 
@@ -77,12 +118,14 @@ class FilesystemTree(object):
 
 
     def __enter__(self):
-        """support using a FilesystemTree as a context manager"""
+        """Support using a FilesystemTree as a context manager.
+        """
         return self
 
 
     def __exit__(self, exc_type, exc_value, tb):
-        """When exiting a context, only do cleanup if it was a clean exit"""
+        """When exiting a context, only do cleanup if it was a clean exit.
+        """
         if exc_type == None and exc_value == None and tb == None:
             self.remove()
 
@@ -121,21 +164,21 @@ class FilesystemTree(object):
 
         So for example if you instantiate a :py:class:`FilesystemTree`:
 
-        >>> fs = FilesystemTree()
+        >>> ft = FilesystemTree()
 
         And you call :py:func:`mk` with:
 
-        >>> fs.mk(('path/to/file.txt', 'Greetings, program!'))
+        >>> ft.mk(('path/to/file.txt', 'Greetings, program!'))
 
         Then you'll have one file in your tree:
 
-        >>> files = os.listdir(os.path.join(fs.root, 'path', 'to'))
+        >>> files = os.listdir(os.path.join(ft.root, 'path', 'to'))
         >>> print(' '.join(files))
         file.txt
 
         And it will have the content you asked for:
 
-        >>> open(fs.resolve('path/to/file.txt')).read()
+        >>> open(ft.resolve('path/to/file.txt')).read()
         'Greetings, program!'
 
         The automatic dedenting is so you can use multi-line strings in indented
@@ -143,7 +186,7 @@ class FilesystemTree(object):
         code, but not have the indents actually written to the file. For example:
 
         >>> def foo():
-        ...     fs.mk(('other/file.txt', '''
+        ...     ft.mk(('other/file.txt', '''
         ...     Here is a list of things:
         ...         - Thing one.
         ...         - Thing two.
@@ -151,7 +194,7 @@ class FilesystemTree(object):
         ...     '''))
         ...
         >>> foo()
-        >>> print(open(fs.resolve('other/file.txt')).read())
+        >>> print(open(ft.resolve('other/file.txt')).read())
         <BLANKLINE>
         Here is a list of things:
             - Thing one.
