@@ -44,7 +44,7 @@ from textwrap import dedent
 from os.path import dirname, isdir, realpath
 
 
-__version__ = '1.1.1-dev'
+__version__ = '1.1.2'
 
 
 if sys.version_info >= (3, 0, 0):
