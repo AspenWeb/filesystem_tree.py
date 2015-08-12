@@ -8,7 +8,7 @@ setup( name='filesystem_tree'
      , author_email='support@gratipay.com'
      , description="a library for managing a filesystem tree"
      , url='https://filesystem-tree-py.readthedocs.org/'
-     , version='1.1.1'
+     , version='1.1.1-dev'
      , py_modules=['filesystem_tree']
      , classifiers=[ 'Development Status :: 5 - Production/Stable'
                    , 'Intended Audience :: Developers'
