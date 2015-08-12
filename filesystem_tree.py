@@ -1,6 +1,32 @@
 """
+Tutorial
+========
+
+Instantiate the :py:class:`~filesystem_tree.FilesystemTree` class:
+
+>>> from filesystem_tree import FilesystemTree
+>>> ft = FilesystemTree()
+
+Now make files!
+
+>>> ft.mk(('greetings/program.txt', 'Greetings, program!'))
+
+You can get the full absolute path of the file you created with
+:py:func:`~filesystem_tree.FilesystemTree.resolve`:
+
+>>> filepath = ft.resolve('greetings/program.txt')
+
+Make directories like so:
+
+>>> ft.mk('my/directory/')
+
+When you're done, clean up with :py:func:`~filesystem_tree.FilesystemTree.remove`:
+
+>>> ft.remove()
+
+
 API Reference
--------------
+=============
 """
 from __future__ import absolute_import, division, print_function, unicode_literals
 
