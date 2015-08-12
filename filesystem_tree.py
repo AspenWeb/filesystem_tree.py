@@ -94,7 +94,7 @@ class FilesystemTree(object):
 
     """
 
-    prefix = 'filesystem-tree-' #: The prefix to use when making a temporary directory as root.
+    prefix = 'filesystem-tree-' #: The prefix to use when making a temporary directory for :py:attr:`root`.
     root = None                 #: The root of the filesystem tree that this object represents.
     should_dedent = True        #: Whether or not to automatically dedent file contents on write.
     encoding = 'UTF-8'          #: How to encode file contents on write, when necessary.
