@@ -41,7 +41,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'filesystem_tree.py'
-copyright = u'Gittip, LLC'
+copyright = u'Gratipay, LLC'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -184,7 +184,7 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'filesystem_treepy.tex', u'filesystem_tree.py Documentation',
-   u'Gittip, LLC', 'manual'),
+   u'Gratipay, LLC', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -214,7 +214,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'filesystem_treepy', u'filesystem_tree.py Documentation',
-     [u'Gittip, LLC'], 1)
+     [u'Gratipay, LLC'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -228,7 +228,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'filesystem_treepy', u'filesystem_tree.py Documentation',
-   u'Gittip, LLC', 'filesystem_treepy', 'One line description of project.',
+   u'Gratipay, LLC', 'filesystem_treepy', 'One line description of project.',
    'Miscellaneous'),
 ]
 
