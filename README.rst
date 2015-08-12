@@ -21,7 +21,7 @@ And we test against 32- and 64-bit Python 2.7, 3.3, and 3.4 on Windows: |appveyo
 .. |travis| image:: https://img.shields.io/travis/gratipay/filesystem_tree.py/master.svg
    :target: https://travis-ci.org/gratipay/filesystem_tree.py
    :alt: Linux build status
-.. |appveyor| image:: https://img.shields.io/appveyor/gratipay/filesystem_tree.py/master.svg
+.. |appveyor| image:: https://img.shields.io/appveyor/ci/gratipay/filesystem-tree-py/master.svg
    :target: https://ci.appveyor.com/project/gratipay/filesystem-tree-py
    :alt: Windows build status
 
