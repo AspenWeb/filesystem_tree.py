@@ -9,7 +9,7 @@ Installation, Testing, and License
 
     $ pip install filesystem_tree
 
-We test against 64-bit Python 2.6, 2.7, 3.2, and 3.3 on Linux: |travis|
+We test against 64-bit Python 2.6, 2.7, 3.2, 3.3, and 3.4 on Linux: |travis|
 
 And we test against 32- and 64-bit Python 2.7 on Windows: |appveyor|
 
