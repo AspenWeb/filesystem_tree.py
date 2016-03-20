@@ -43,3 +43,7 @@ test_script:
   # Build the compiled extension and run the project tests
   - "python filesystem_tree.py"
   - "py.test -v tests.py"
+
+branches:
+  only:
+    - master
