@@ -33,7 +33,6 @@ install:
   - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
 
   # Install the build dependencies of the project.
-  - "pip install --upgrade pip"
   - "pip install pytest>=2.4"
   - "pip install ./"
 
