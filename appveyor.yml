@@ -33,7 +33,6 @@ install:
   - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
 
   # Install the build dependencies of the project.
-  - "pip install --upgrade pip"
   - "pip install pytest>=2.4"
   - "pip install ./"
 
@@ -43,3 +42,7 @@ test_script:
   # Build the compiled extension and run the project tests
   - "python filesystem_tree.py"
   - "py.test -v tests.py"
+
+branches:
+  only:
+    - master
